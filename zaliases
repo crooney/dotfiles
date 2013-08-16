@@ -1,0 +1,10 @@
+source $HOME/.aliases
+
+alias -s cc=vi
+alias -s c=vi
+alias -s cpp=vi
+alias -s go=vi
+
+alias 'as=apt-cache search'
+alias 'aw=apt-cache show'
+

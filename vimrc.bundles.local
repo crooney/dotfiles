@@ -1,0 +1,28 @@
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'dag/vim2hs'
+Bundle 'ujihisa/neco-ghc'
+Bundle 'Shougo/vimproc'
+
+" added by crooney
+
+let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'javascript', 'html', 'misc']
+
+"work with tmux repls. good for haskell. unnecessary for cloure
+Bundle 'benmills/vimux'
+"use left hand gutter to indicate git diffs
+Bundle 'airblade/vim-gitgutter.git'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'vim-scripts/fountain.vim'
+"effectively highlight both ends of a paren pair
+Bundle 'chreekat/vim-paren-crosshairs'
+"for csv files
+Bundle 'vim-scripts/csv.vim'
+"relative numbers in normal mode, absolute number in insert
+Bundle "myusuf3/numbers.vim"
+Bundle "vim-scripts/Obvious-Mode"
+
+"clojure bundles
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+"goofy replace defn and fn with unicode func and lambda symbols
+Bundle 'honza/vim-clojure-conceal'

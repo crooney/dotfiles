@@ -1,0 +1,7 @@
+$! /bin/sh
+xset  fp+  unix/:7101
+feh --bg-scale ~/wallpaper/dwm-wallpaper.jpg  &
+killall dwmstatus.sh
+dwmstatus.sh &
+dwm
+

@@ -1,0 +1,6 @@
+alias apt-get="sudo apt-get"
+alias deploy="scp -r _site/* ssh.phx.nearlyfreespeech.net:"
+alias cmus="cmus;sleep 2;cmus-remote -p"
+alias sloc="sed -e '/^\/\//d' -e '/^$/d'"
+alias up="nmcli con up id WIFI-AGUAMAR"
+alias cinstall="chicken-install -s"

@@ -1,0 +1,85 @@
+au BufEnter * inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+au BufEnter * inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+
+let g:rainbow_active = 1
+let g:rainbow_operators = 1
+
+" ==== neosnippet
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+set rtp+=/home/crooney/go/misc/vim
+
+set autowrite
+set backup
+set writebackup
+set wildmode=longest,list
+
+map <Left> :echo "Use h"<cr>
+map <Right> :echo "Use l"<cr>
+map <Up> :echo "Use k"<cr>
+map <Down> :echo "Use j"<cr>
+
+inoremap jj <ESC>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+set background=dark
+set colorcolumn=80
+let g:solarized_termtrans=0
+
+highlight clear Search
+
+autocmd FileType c,cpp,go setlocal foldmethod=syntax
+autocmd FileType c,cpp,go setlocal cindent
+autocmd FileType c,cpp,go,sh,scheme,lisp,haskell,lhaskell setlocal number
+autocmd FileType c,cpp setlocal autoread
+autocmd FileType c,cpp,go,fay nmap <F5> :write \| :make<CR>
+autocmd FileType c,cpp,go imap <F5> <Esc><F5>
+autocmd FileType c,cpp,go,haskell,lhaskell nmap <F6> :cprev<CR>
+autocmd FileType c,cpp,go,haskell,lhaskell imap <F6> <Esc><F6>
+autocmd FileType c,cpp,go,haskell,lhaskell nmap <F7> :cnext<CR>
+autocmd FileType c,cpp,go,haskell,lhaskell imap <F7> <Esc><F7>
+autocmd FileType c,cpp,go,haskell,lhaskell nmap <F8> :cclose<CR>
+autocmd FileType c,cpp,go,haskell,lhaskell imap <F8> <Esc><F8>
+autocmd BufWritePre *.go :silent Fmt
+autocmd BufNewFile,BufRead *.go setlocal makeprg=go\ test
+autocmd FileType html setlocal indentkeys-=*<Return>
+autocmd FileType make,c,cpp,go,sh setlocal ts=4 sw=4 noexpandtab
+autocmd FileType haskell,lhaskell setlocal ts=4 sw=4 expandtab
+autocmd FileType scheme,lisp setlocal ts=2 sw=2 expandtab
+autocmd FileType fay autocmd BufWritePost <buffer> GhcModLintAsync
+
+"vim.wikia.com open quickfix window on compile errors
+autocmd FileType c,cpp,go QuickFixCmdPost [^l]* nested cwindow
+autocmd FileType c,cpp,go QuickFixCmdPost    l* nested lwindow
+
+nnoremap <silent> <F3> :bprevious<CR>
+nnoremap <silent> <F4> :bnext<CR>
+
+" Vimux (REPL) Stuff
+" Load the current file in ghci
+autocmd FileType haskell,lhaskell nmap <F5> :write \| :call VimuxRunCommand(":l " . bufname("%"))<CR>
+autocmd FileType haskell,lhaskell imap <F5> <Esc><F5>
+
+" Prompt for a command to run
+autocmd FileType haskell,lhaskell nmap <F9> :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+autocmd FileType haskell,lhaskell nmap <F10> :VimuxRunLastCommand<CR>
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+autocmd FileType haskell,lhaskell nmap <F11> :call VimuxRunCommand(@v . "\n", 0)<CR>
+
+" Inspect runner pane
+autocmd FileType haskell,lhaskell nmap <F12> :VimuxInspectRunner<CR>
+
+highlight OverLength ctermbg=darkred ctermfg=white
+match OverLength /\%81v.\+/

@@ -1,0 +1,3 @@
+$! /bin/sh
+xset  fp+  unix/:7101
+.xmonad/xmonad-x86_64-linux
